@@ -8,13 +8,26 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.activity_main.*
 import org.tensorflow.lite.support.image.TensorImage
 import tw.edu.pu.csim.tcyang.crazyshape.ml.Shapes
 
 class GameActivity : AppCompatActivity() {
+
+    var FlagShape:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        var intent =getIntent()
+        FlagShape = intent.getIntExtra("形狀",0)
+        when(FlagShape){
+            1->txvMsg.text="請畫出圓形"
+            2->txvMsg.text="請畫出方形"
+            3->txvMsg.text="請畫出星形"
+            4->txvMsg.text="請畫出三角形"
+        }
 
         btnBack.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
